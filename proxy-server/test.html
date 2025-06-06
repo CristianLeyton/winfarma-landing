@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vademecum Proxy Test</title>
+</head>
+<body>
+    <h1>Testing Vademecum Proxy</h1>
+    <button id="fetchData">Fetch Vademecum Data</button>
+    <pre id="results"></pre>
+
+    <script>
+        document.getElementById('fetchData').addEventListener('click', async () => {
+            const resultsElement = document.getElementById('results');
+            resultsElement.textContent = 'Fetching data...';
+
+            try {
+                const response = await fetch('https://api-cdl.com/medicamentos.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ searchdata: 'vavanada' })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+                }
+
+                const data = await response.json();
+                resultsElement.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                resultsElement.textContent = 'Error: ' + error.message;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+---
+import logo from "../assets/images/logo.png";
+---
+
+<header
+  id="header"
+  class="sticky top-4 z-50 bg-white shadow-md rounded-xl container mx-auto xl:max-w-6xl"
+>
+  <nav class="flex justify-between items-center px-3 py-2 md:py-0 text-sm font-onest relative">
+    <a href="/">
+      <img src={logo.src} alt="logo" class="h-10 w-auto" />
+    </a>
+
+    <div
+      id="navBar"
+      class="hidden md:flex gap-1 md:gap-6 text-slate-600 *:hover:text-slate-950 bg-white w-full md:w-fit shadow-md rounded-xl md:shadow-none p-4 top-16 left-0 text-left *:hover:bg-slate-100 *:p-2 *:rounded *:transition md:*:p-0 md:*:hover:bg-white"
+    >
+      <a href="/">Inicio</a>
+      <a href="/caracteristicas">Características</a>
+      <a href="/precios">Precios</a>
+      <a href="/sobre-nosotros">Sobre nosotros</a>
+      <a href="/contacto">Contacto</a>
+    </div>
+
+    <div class="flex gap-4">
+      <a
+        class="bg-slate-800 text-white rounded-lg px-3 py-1.5 hover:-translate-y-0.5 transition"
+        href="/precios-medicamentos"
+      >
+        Precios de medicamentos
+      </a>
+
+      <button
+        id="menu-button"
+        class="md:hidden flex items-center gap-2 text-slate-600 cursor-pointer"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          />
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .open-menu-animation {
+    animation: open-menu 0.2s ease-in-out forwards;
+  }
+
+  @keyframes open-menu {
+    from {
+      opacity: 0;
+      transform: translateY(-5%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .close-menu-animation {
+    animation: close-menu 0.2s ease-in-out forwards;
+  }
+
+  @keyframes close-menu {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-5%);
+    }
+  }
+</style>
+
+<script>
+  const navBar = document.getElementById("navBar");
+  const menuButton = document.getElementById("menu-button");
+
+  function openMenu() {
+    navBar?.classList.remove("hidden", "close-menu-animation");
+    navBar?.classList.add("flex", "flex-col", "absolute", "open-menu-animation");
+  }
+
+  function closeMenu() {
+    navBar?.classList.remove("open-menu-animation");
+    navBar?.classList.add("close-menu-animation");
+
+    setTimeout(() => {
+      navBar?.classList.remove("flex", "flex-col", "absolute", "close-menu-animation");
+      navBar?.classList.add("hidden");
+    }, 200);
+  }
+
+  menuButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    if (navBar?.classList.contains("hidden")) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      navBar &&
+      //@ts-ignore
+      !navBar.contains(event.target) &&
+      //@ts-ignore
+      !menuButton.contains(event.target) &&
+      !navBar.classList.contains("hidden")
+    ) {
+      closeMenu();
+    }
+  });
+
+  //Si cambia el tamaño de la ventana, se cierra el menú
+  window.addEventListener("resize", () => {
+    closeMenu();
+  });
+
+  // Evitar que los clics dentro del menú cierren el menú
+  navBar?.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+</script>

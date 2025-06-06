@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Poppins";
+    src: url('../assets/fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Onest";
+    src: url('../assets/fonts/Onest-Regular.ttf');
+}
+
+.font-poppins {
+    font-family: "Poppins", sans-serif;
+}
+
+.font-onest {
+    font-family: "Onest", sans-serif;
+}
+
