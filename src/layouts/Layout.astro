@@ -1,10 +1,13 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 const { className, title } = Astro.props;
 const description =
   "Winfarma es un sistema de facturación para farmacias que permite a los usuarios facturar a sus clientes de forma sencilla y eficiente. Disponible en toto el pais.";
 
+import Header from "../components/Header.astro";
 import logoB from "../assets/images/imagenB.jpeg";
+import background from '../assets/images/stripes.svg';
 ---
 
 <!doctype html>
@@ -26,8 +29,14 @@ import logoB from "../assets/images/imagenB.jpeg";
     <meta property="og:description" content={description} />
     <meta property="og:image" content={logoB.src} />
     <meta name="twitter:image" content={logoB.src} />
+
+	<ClientRouter />
   </head>
-  <body class:list={["bg-slate-50 font-onest", className]}>
+  <body class:list={["bg-slate-50 font-onest text-pretty text-slate-900", className]}>
+	<div class="relative w-full grid place-items-center">
+		<img src={background.src} alt="background" class="mx-auto top-0 select-none absolute -z-10" width="720" height="400" />
+	</div>
+	<Header />
     <slot />
   </body>
 </html>

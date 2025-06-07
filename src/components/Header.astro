@@ -4,7 +4,7 @@ import logo from "../assets/images/logo.png";
 
 <header
   id="header"
-  class="sticky top-4 z-50 bg-white shadow-md rounded-xl container mx-auto xl:max-w-6xl"
+  class="sticky top-4 mt-4 z-50 bg-white shadow-md rounded-xl container mx-auto xl:max-w-6xl"
 >
   <nav class="flex justify-between items-center px-4 py-2 md:py-0 text-sm relative">
     <a href="/">
@@ -25,7 +25,7 @@ import logo from "../assets/images/logo.png";
     <div class="flex gap-4">
       <a
         class="bg-slate-800 text-white rounded-lg px-3 py-1.5 hover:-translate-y-0.5 transition"
-        href="/precios-medicamentos"
+        href="/precio-de-medicamentos"
       >
         Precios de medicamentos
       </a>
@@ -86,6 +86,9 @@ import logo from "../assets/images/logo.png";
 </style>
 
 <script>
+
+  document.addEventListener("astro:page-load", () => {
+
   const navBar = document.getElementById("navBar");
   const menuButton = document.getElementById("menu-button");
 
@@ -137,5 +140,6 @@ import logo from "../assets/images/logo.png";
   // Evitar que los clics dentro del menú cierren el menú
   navBar?.addEventListener("click", (event) => {
     event.stopPropagation();
+  });
   });
 </script>

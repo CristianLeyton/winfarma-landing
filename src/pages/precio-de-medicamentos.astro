@@ -1,0 +1,316 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout className="px-4" title="Winfarma | Precio de medicamentos">
+  <section class="grid place-items-center">
+    <span
+      class="mt-8 border-t border-slate-200 px-8 py-2 flex items-center gap-1"
+      >Manual Farmacéutico<svg
+        class="text-lime-500"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M13.5 6h-2v3h-3v2h3v3h2v-3h3V9h-3z"></path><path
+          d="M20 2H6C4.35 2 3 3.35 3 5v14c0 1.65 1.35 3 3 3h15v-2H6c-.55 0-1-.45-1-1s.45-1 1-1h14c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1m-6 14H6c-.35 0-.69.07-1 .18V5c0-.55.45-1 1-1h13v12z"
+        ></path>
+      </svg></span
+    >
+    <p
+      class="font-bold text-2xl md:text-3xl lg:text-4xl border-t border-b border-slate-200 md:px-28 px-8 py-2 font-poppins"
+    >
+      Precios de medicamentos
+    </p>
+
+    <p class="border-b border-slate-200 px-10 py-2 max-w-3xl text-center">
+      Encuentre los precios sugeridos al público de las especialidades
+      medicinales que se comercializan en la República Argentina.
+    </p>
+  </section>
+
+  <main class="grid place-items-center py-4">
+    <p class="text-center text-sm font-bold text-slate-500 py-2">
+      Nombre, prescripción, principio activo, troquel o laboratorio:
+    </p>
+    <form id="search-medicamentos-form" class="flex gap-1 items-center">
+      <label class="flex gap-1 items-center">
+        <input
+          minlength="3"
+          type="search"
+          id="search-medicamentos-input"
+          class="text-slate-900 font-poppins outline-none bg-white border border-slate-200 rounded-lg px-3 py-1.5"
+          placeholder="Ej: Ibuprofeno"
+        />
+        <button
+          id="search-medicamentos-button"
+          class="bg-slate-800 text-white rounded-lg px-3 py-1.5"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <!--Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free-->
+            <path
+              d="M10.5 19c1.98 0 3.81-.69 5.25-1.83L20 21.42l1.41-1.41-4.25-4.25a8.47 8.47 0 0 0 1.83-5.25c0-4.69-3.81-8.5-8.5-8.5S2 5.81 2 10.5 5.81 19 10.5 19m0-15c3.58 0 6.5 2.92 6.5 6.5S14.08 17 10.5 17 4 14.08 4 10.5 6.92 4 10.5 4"
+            ></path>
+          </svg>
+        </button>
+      </label>
+    </form>
+
+    <div id="results-container" class="flex-col w-full max-w-4xl py-1 hidden">
+      <div
+        id="filters"
+        class="grid grid-cols-2 w-full items-center place-items-center gap-2 py-2"
+      >
+        <label for="">
+          Principio activo:
+          <select
+            name="principio"
+            id="principio"
+            class="bg-white p-1 rounded-lg border border-slate-200 w-full"
+          >
+            <option value="0">Todos</option>
+          </select>
+        </label>
+        <label for=""
+          >Laboratorio:
+          <select
+            name="laboratorio"
+            id="laboratorio"
+            class="bg-white p-1 rounded-lg border border-slate-200 w-full"
+          >
+            <option value="0">Todos</option>
+          </select>
+        </label>
+      </div>
+
+      <header
+        class="grid grid-cols-4 text-center w-full shadow-md rounded-lg bg-slate-800 text-white p-2"
+      >
+        <h5>Nombre</h5>
+        <h5>Precio</h5>
+        <h5>Precio PAMI</h5>
+        <h5>Más Info</h5>
+      </header>
+
+      <section
+        id="results"
+        class="text-center *:even:bg-slate-50 *:odd:bg-slate-100 *:rounded-lg *:p-1 *:mb-1 shadow-md rounded-lg bg-white p-2 mt-2 w-full *:grid *:text-center *:grid-cols-4 *:items-center"
+      >
+        <!-- aquí van los resultados -->
+      </section>
+    </div>
+  </main>
+
+  <footer class="border-t border-slate-200 px-8 py-4 text-center">
+    <p class="text-center text-sm text-slate-500">
+      *IMPORTANTE: La información que presentamos en esta sección es
+      completamente orientativa, pretende ser una guía para el profesional que
+      la consulta. Si Ud. desea o necesita estar informado al instante de la
+      variación o modificación en los precios de medicamentos, <a
+        href="/contacto"
+        class="text-slate-800"
+      >
+        consulte por nuestro sistema
+      </a>.
+    </p>
+  </footer>
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const form = document.getElementById("search-medicamentos-form");
+    const input = document.getElementById("search-medicamentos-input");
+    const resultsElement = document.getElementById("results");
+    const resultsContainer = document.getElementById("results-container");
+    let dataLocal: any[] = [];
+    let dataOriginal: any[] = [];
+
+    if (!form || !input || !resultsElement) return;
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      resultsContainer?.classList.remove("hidden");
+      resultsContainer?.classList.add("flex");
+      //@ts-ignore
+      const searchData = input.value?.trim();
+      if (!searchData) {
+        resultsElement.textContent =
+          "Por favor, ingresá un nombre, prescripción, principio activo, troquel o laboratorio.";
+        return;
+      }
+
+      resultsElement.textContent = "Buscando medicamentos...";
+
+      try {
+        const response = await fetch("https://api-cdl.com/medicamentos.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ searchdata: searchData }),
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText);
+        }
+
+        const data = await response.json();
+        if (!Array.isArray(data) || data.length === 0) {
+          resultsElement.textContent = "No se encontraron medicamentos.";
+          return;
+        }
+
+        dataLocal = [...data];
+        dataOriginal = data;
+        drawFilters(dataLocal);
+        drawResults(dataLocal);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        //@ts-ignore
+        resultsElement.textContent = `Error al buscar: ${error.message || "Desconocido"}`;
+      }
+    });
+
+    function drawResults(data: any) {
+      if (resultsElement) {
+        resultsElement.innerHTML = "";
+      }
+
+      data.forEach((item: any) => {
+        const resultContainer = document.createElement("article");
+        resultContainer.className = "result p-4 border-b border-gray-200";
+
+        const nombre = document.createElement("h6");
+        nombre.classList.add("text-sm", "flex", "flex-col", "gap-0");
+        nombre.textContent = item.NOMBRE;
+        const presentacion = document.createElement("p");
+        presentacion.classList.add("text-sm", "text-gray-500");
+        presentacion.textContent = item.PRESENTACION;
+        nombre.appendChild(presentacion);
+
+        const precioFarmacia = document.createElement("h6");
+        precioFarmacia.textContent = formatNumber(item.PRECIO);
+
+        const precioPami = document.createElement("h6");
+        const textoPAMI = item.D_PAMI;
+        const descuentoPami = parseInt(textoPAMI.split("%")[0], 10);
+        precioPami.textContent = formatNumber(
+          item.PRECIOPAMI - (item.PRECIOPAMI * descuentoPami) / 100 || 0
+        );
+
+        const button = document.createElement("button");
+        button.classList.add("font-bold", "cursor-pointer", "text-sky-600");
+        button.textContent = "Ver";
+
+        // Agregamos todo al contenedor
+        resultContainer.appendChild(nombre);
+        resultContainer.appendChild(precioFarmacia);
+        resultContainer.appendChild(precioPami);
+        resultContainer.appendChild(button);
+
+        // Y finalmente lo agregamos a la lista de resultados
+        resultsElement?.appendChild(resultContainer);
+      });
+    }
+
+    const filterPrincipio = document.getElementById("principio");
+    const filterLaboratorio = document.getElementById("laboratorio");
+
+    function drawFilterPrincipio(data: any[]) {
+      const uniqueDrogas = new Set<string>();
+
+      // Quitamos los valores que ya se han agregado
+      if (filterPrincipio) {
+        filterPrincipio.innerHTML = "";
+      }
+      const option0 = document.createElement("option");
+      option0.value = "0";
+      option0.textContent = "Todos";
+      filterPrincipio?.appendChild(option0);
+
+      data.forEach((item) => {
+        if (item.DROGA && !uniqueDrogas.has(item.DROGA)) {
+          uniqueDrogas.add(item.DROGA);
+
+          const option = document.createElement("option");
+          option.value = item.DROGA;
+          option.textContent = item.DROGA;
+          filterPrincipio?.appendChild(option);
+        }
+      });
+    }
+
+    function drawFilterLaboratorio(data: any[]) {
+      const uniqueLaboratorio = new Set<string>();
+
+      // Quitamos los valores que ya se han agregado
+      if (filterLaboratorio) {
+        filterLaboratorio.innerHTML = "";
+      }
+      const option0 = document.createElement("option");
+      option0.value = "0";
+      option0.textContent = "Todos";
+      filterLaboratorio?.appendChild(option0);
+
+      data.forEach((item) => {
+        if (item.LABORATORIO && !uniqueLaboratorio.has(item.LABORATORIO)) {
+          uniqueLaboratorio.add(item.LABORATORIO);
+
+          const option = document.createElement("option");
+          option.value = item.LABORATORIO;
+          option.textContent = item.LABORATORIO;
+          filterLaboratorio?.appendChild(option);
+        }
+      });
+    }
+
+    function drawFilters(data: any[]) {
+      drawFilterPrincipio(data);
+      drawFilterLaboratorio(data);
+    }
+
+    function formatNumber(number: number) {
+      return number.toLocaleString("es-AR", {
+        style: "currency",
+        currency: "ARS",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+    }
+
+    filterPrincipio?.addEventListener("change", (event) => {
+      //@ts-ignore
+      const value = event.target.value;
+
+      if (!value || value === "" || value == "0") {
+        dataLocal = [...dataOriginal]; // sin filtro
+      } else {
+        dataLocal = dataOriginal.filter((item: any) => item.DROGA === value);
+      }
+      console.log(value);
+      drawResults(dataLocal);
+    });
+
+    filterLaboratorio?.addEventListener("change", (event) => {
+      //@ts-ignore
+      const value = event.target.value;
+
+      if (!value || value === "" || value == "0") {
+        dataLocal = [...dataOriginal]; // sin filtro
+      } else {
+        dataLocal = dataOriginal.filter((item: any) => item.LABORATORIO === value);
+      }
+      drawResults(dataLocal);
+    });
+  });
+</script>
