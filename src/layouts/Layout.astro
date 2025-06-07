@@ -8,6 +8,7 @@ const description =
 import Header from "../components/Header.astro";
 import logoB from "../assets/images/imagenB.jpeg";
 import background from '../assets/images/stripes.svg';
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
@@ -37,8 +38,12 @@ import background from '../assets/images/stripes.svg';
 		<img src={background.src} alt="background" class="mx-auto top-0 select-none absolute -z-10" width="720" height="400" />
 	</div>
 	<Header />
+  <main>
     <slot />
+  </main>
+  <Footer />
   </body>
 </html>
 
-<style></style>
+<style>
+</style>

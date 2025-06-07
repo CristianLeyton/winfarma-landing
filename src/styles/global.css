@@ -10,6 +10,15 @@
     src: url('../assets/fonts/Onest.ttf');
 }
 
+@font-face {
+    font-family: "Iceberg";
+    src: url('../assets/fonts/Iceberg.ttf');
+}
+
+.font-iceberg {
+    font-family: "Iceberg", sans-serif;
+}
+
 .font-poppins {
     font-family: "Poppins", sans-serif;
 }

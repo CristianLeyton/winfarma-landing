@@ -31,8 +31,8 @@ import ButtonSecondary from "./ButtonSecondary.astro";
   </p>
   <p
     class="font-poppins text-3xl md:text-4xl lg:text-5xl md:leading-15 font-black border-t border-b border-slate-200 px-10 py-2"
-  >
-    El sistema de <span class="text-sky-600">gestión de farmacias</span>
+  transition:animate="initial" transition:name="title-page">
+    El <span class="text-sky-600">sistema de gestión de farmacias</span>
     <br /> que estas buscando
   </p>
   <p
@@ -48,7 +48,7 @@ import ButtonSecondary from "./ButtonSecondary.astro";
   </div>
 </section>
 
-<style>
+<style is:global>
     .fade-in-animation p,div {
         animation: fade-in 0.4s ease-in-out forwards;
     }

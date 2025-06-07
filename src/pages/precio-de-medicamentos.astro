@@ -20,7 +20,9 @@ import Layout from "../layouts/Layout.astro";
       </svg></span
     >
     <p
-      class="font-bold text-2xl md:text-3xl lg:text-4xl border-t border-b border-slate-200 md:px-28 px-8 py-2 font-poppins"
+      class="font-bold text-2xl md:text-3xl lg:text-4xl border-t border-b border-slate-200 md:px-28 px-8 py-2 font-poppins text-sky-600"
+      transition:animate="initial"
+      transition:name="title-page"
     >
       Precios de medicamentos
     </p>
@@ -137,18 +139,18 @@ import Layout from "../layouts/Layout.astro";
         <span class="font-bold">Precio:</span>
         <span id="precio-medicamento"></span>
       </p>
-            <p class="text-sm text-sky-500">
-         <span class="font-bold">Precio Pami:</span>
+      <p class="text-sm text-sky-500">
+        <span class="font-bold">Precio Pami:</span>
         <span id="precioBasePami-medicamento"></span>
       </p>
 
       <p class="text-sm text-slate-500">
-         <span class="font-bold">Descuento Pami:</span>
+        <span class="font-bold">Descuento Pami:</span>
         <span id="descuento-pami-medicamento"></span>
       </p>
 
       <p class="text-sm text-sky-600">
-         <span class="font-bold">Precio Afiliado Pami:</span>
+        <span class="font-bold">Precio Afiliado Pami:</span>
         <span id="precio-pami-medicamento"></span>
       </p>
 
@@ -160,47 +162,52 @@ import Layout from "../layouts/Layout.astro";
       </p>
 
       <p class="text-sm text-slate-500">
-         <span class="font-bold">Acción:</span>
+        <span class="font-bold">Acción:</span>
         <span id="accion-medicamento"></span>
       </p>
       <p class="text-sm text-slate-500">
-         <span class="font-bold">Forma:</span>
+        <span class="font-bold">Forma:</span>
         <span id="forma-medicamento"></span>
       </p>
       <p class="text-sm text-slate-500">
-         <span class="font-bold">Origen:</span>
+        <span class="font-bold">Origen:</span>
         <span id="origen-medicamento"></span>
       </p>
       <p class="text-sm text-slate-500">
-         <span class="font-bold">Troquel:</span>
+        <span class="font-bold">Troquel:</span>
         <span id="troquel-medicamento"></span>
       </p>
 
       <p class="text-sm text-slate-500">
-         <span class="font-bold">Codigo de Barra:</span>
+        <span class="font-bold">Codigo de Barra:</span>
         <span id="codigo-barra-medicamento"></span>
       </p>
 
       <p class="text-sm text-slate-500">
-         <span class="font-bold">Fecha vigencia:</span>
+        <span class="font-bold">Fecha vigencia:</span>
         <span id="vigencia-medicamento"></span>
       </p>
-    
-            <p class="text-sm text-orange-500">
-         <span class="font-bold">Tipo de venta:</span>
+
+      <p class="text-sm text-orange-500">
+        <span class="font-bold">Tipo de venta:</span>
         <span id="tipo-venta-medicamento"></span>
       </p>
       <hr class="border-t border-slate-200 w-full" />
 
       <div class="flex w-full justify-end">
-    <button id="close-medicamento" class="bg-slate-800 text-white rounded-lg px-3 py-1.5 hover:-translate-y-0.5 transition w-fit cursor-pointer text-sm">
-      Cerrar
-    </button>
-</div>
+        <button
+          id="close-medicamento"
+          class="bg-slate-800 text-white rounded-lg px-3 py-1.5 hover:-translate-y-0.5 transition w-fit cursor-pointer text-sm"
+        >
+          Cerrar
+        </button>
+      </div>
     </div>
   </dialog>
 
-  <footer class="border-t border-slate-200 px-8 py-4 text-center">
+  <footer
+    class="border-t border-slate-200 px-8 py-4 text-center max-w-4xl mx-auto"
+  >
     <p class="text-center text-sm text-slate-500">
       *IMPORTANTE: La información que presentamos en esta sección es
       completamente orientativa, pretende ser una guía para el profesional que
@@ -214,6 +221,7 @@ import Layout from "../layouts/Layout.astro";
     </p>
   </footer>
 </Layout>
+
 
 <script>
   document.addEventListener("astro:page-load", () => {
@@ -231,6 +239,7 @@ import Layout from "../layouts/Layout.astro";
 
       resultsContainer?.classList.remove("hidden");
       resultsContainer?.classList.add("flex");
+      resultsContainer?.classList.add("open-menu-animation");
       //@ts-ignore
       const searchData = input.value?.trim();
       if (!searchData) {
@@ -279,7 +288,7 @@ import Layout from "../layouts/Layout.astro";
 
       data.forEach((item: any) => {
         const resultContainer = document.createElement("article");
-        resultContainer.className = "result p-4 border-b border-gray-200";
+        resultContainer.className = "result p-4 border-b border-gray-200 open-menu-animation";
 
         const nombre = document.createElement("h6");
         nombre.classList.add("text-sm", "flex", "flex-col", "gap-0");
@@ -466,7 +475,9 @@ import Layout from "../layouts/Layout.astro";
         medicamento.PRECIOPAMI -
           (medicamento.PRECIOPAMI * descuentoPami) / 100 || 0
       );
-      precioBasePamiMedicamento.textContent = formatNumber(medicamento.PRECIOPAMI);
+      precioBasePamiMedicamento.textContent = formatNumber(
+        medicamento.PRECIOPAMI
+      );
       accionMedicamento.textContent = medicamento.ACCION;
       tipoVentaMedicamento.textContent = medicamento.TIPO_DE_VENTA;
       origenMedicamento.textContent = medicamento.IMPORTADO;
@@ -475,6 +486,7 @@ import Layout from "../layouts/Layout.astro";
       vigenciaMedicamento.textContent = medicamento.FECHA;
 
       dialogMedicamento.classList.add("grid");
+      dialogMedicamento.classList.add("open-menu-animation");
       dialogMedicamento.showModal();
     }
 
@@ -482,6 +494,7 @@ import Layout from "../layouts/Layout.astro";
     document.addEventListener("click", (event) => {
       if (event.target === dialogMedicamento) {
         dialogMedicamento.classList.remove("grid");
+             dialogMedicamento.classList.remove("open-menu-animation");
         dialogMedicamento.close();
       }
     });
@@ -492,6 +505,7 @@ import Layout from "../layouts/Layout.astro";
 
     closeMedicamento.addEventListener("click", () => {
       dialogMedicamento.classList.remove("grid");
+      dialogMedicamento.classList.remove("open-menu-animation");
       dialogMedicamento.close();
     });
   });
