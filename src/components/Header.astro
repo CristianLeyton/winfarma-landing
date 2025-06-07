@@ -5,8 +5,11 @@ import logo from "../assets/images/logo.png";
 <header
   id="header"
   class="sticky top-4 mt-4 z-50 h-fit bg-white shadow-md rounded-xl container mx-auto xl:max-w-6xl"
+  transition:name="header"
 >
-  <nav class="flex justify-between items-center px-4 py-2 md:py-0 text-sm relative">
+  <nav
+    class="flex justify-between items-center px-4 py-2 md:py-0 text-sm relative"
+  >
     <a href="/">
       <img src={logo.src} alt="logo" class="h-10 w-auto" />
     </a>
@@ -45,8 +48,7 @@ import logo from "../assets/images/logo.png";
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
         </svg>
       </button>
     </div>
@@ -86,60 +88,74 @@ import logo from "../assets/images/logo.png";
 </style>
 
 <script>
-
   document.addEventListener("astro:page-load", () => {
+    const navBar = document.getElementById("navBar");
+    const menuButton = document.getElementById("menu-button");
 
-  const navBar = document.getElementById("navBar");
-  const menuButton = document.getElementById("menu-button");
-
-  function openMenu() {
-    navBar?.classList.remove("hidden", "close-menu-animation");
-    navBar?.classList.add("flex", "flex-col", "absolute", "open-menu-animation");
-  }
-
-  function closeMenu() {
-    navBar?.classList.remove("open-menu-animation");
-    navBar?.classList.add("close-menu-animation");
-
-    setTimeout(() => {
-      navBar?.classList.remove("flex", "flex-col", "absolute", "close-menu-animation");
-      navBar?.classList.add("hidden");
-    }, 200);
-  }
-
-  menuButton?.addEventListener("click", (event) => {
-    event.stopPropagation();
-
-    if (navBar?.classList.contains("hidden")) {
-      openMenu();
-    } else {
-      closeMenu();
+    function openMenu() {
+      navBar?.classList.remove("hidden", "close-menu-animation");
+      navBar?.classList.add(
+        "flex",
+        "flex-col",
+        "absolute",
+        "open-menu-animation"
+      );
     }
-  });
 
-  document.addEventListener("click", (event) => {
-    if (
-      navBar &&
-      //@ts-ignore
-      !navBar.contains(event.target) &&
-      //@ts-ignore
-      !menuButton.contains(event.target) &&
-      !navBar.classList.contains("hidden")
-    ) {
-      closeMenu();
+    function closeMenu() {
+      navBar?.classList.remove("open-menu-animation");
+      navBar?.classList.add("close-menu-animation");
+
+      setTimeout(() => {
+        navBar?.classList.remove(
+          "flex",
+          "flex-col",
+          "absolute",
+          "close-menu-animation"
+        );
+        navBar?.classList.add("hidden");
+      }, 200);
     }
-  });
 
-  //Si cambia el tamaño de la ventana horizontalmente, cerrar el menú
-  window.addEventListener("resize", () => {
-    if (navBar?.classList.contains("open-menu-animation")) {
-      closeMenu();
-    }
-  });
+    menuButton?.addEventListener("click", (event) => {
+      event.stopPropagation();
 
-  // Evitar que los clics dentro del menú cierren el menú
-  navBar?.addEventListener("click", (event) => {
-    event.stopPropagation();
-  });
+      if (navBar?.classList.contains("hidden")) {
+        openMenu();
+      } else {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        navBar &&
+        //@ts-ignore
+        !navBar.contains(event.target) &&
+        //@ts-ignore
+        !menuButton.contains(event.target) &&
+        !navBar.classList.contains("hidden")
+      ) {
+        closeMenu();
+      }
+    });
+
+    //Si cambia el tamaño de la ventana horizontalmente, cerrar el menú
+    window.addEventListener("resize", () => {
+      if (navBar?.classList.contains("open-menu-animation")) {
+        closeMenu();
+      }
+    });
+
+    // Evitar que los clics dentro del menú cierren el menú
+    navBar?.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
+
+      // Si se hace clic en un enlace <a>, permitir propagación
+      if (target.closest("a")) return;
+
+      // Si no es un <a>, detener propagación para que no se cierre el menú
+      event.stopPropagation();
+    });
   });
 </script>

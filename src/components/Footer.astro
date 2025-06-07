@@ -19,13 +19,15 @@ export const contact = {
 };
 ---
 
-<footer id="contacto" class="text-slate-800 px-6 py-4 bg-white shadow-md rounded-xl container mx-auto xl:max-w-6xl my-4">
+<footer id="contacto" class="text-slate-800 px-6 py-4 bg-white shadow-md rounded-xl mx-auto xl:max-w-6xl my-4 text-sm"
+  transition:name="footer"
+>
   <div
     class="grid md:justify-items-center items-center md:grid-cols-2 gap-7"
   >
     <div class="text-slate-500">
-      <h2 class="text-lg lg:text-2xl font-bold mb-2">Contactanos</h2>
-      <a href={contact.ubicacion} target="_blank" title="Ver en GoogleMaps" class="flex gap-1 items-center transition hover:text-sky-600 group">Av. del Bicentenario de la Batalla de Salta 1026 <MapPinIcon className="text-sky-600 group-hover:-translate-y-0.5 transition"/></a>
+      <h2 class="text-lg lg:text-xl font-bold mb-1">Contactanos</h2>
+      <a href={contact.ubicacion} target="_blank" title="Ver en GoogleMaps" class="flex gap-1 items-center transition hover:text-sky-600 group">Av. del Bicentenario 1026 <MapPinIcon className="text-sky-600 group-hover:-translate-y-0.5 transition"/></a>
       <p>Salta, Salta - Argentina</p>
       <p>CP: 4400</p>
       <a href=`tel:${contact.phone}` target="_blank" title="Llamar" class="transition hover:text-sky-600">Celular: +54 387 463-7703</a> <br>
@@ -36,7 +38,7 @@ export const contact = {
     </div>
 
     <div
-      class="flex justify-center gap-7 md:gap-4 flex-nowrap *:bg-slate-800 *:text-white  *:inline-block *:p-1 *:rounded-lg *:scale-150 *:md:scale-125 *:transition"
+      class="flex justify-center gap-5 md:gap-4 flex-nowrap *:bg-slate-800 *:text-white  *:inline-block *:p-1 *:rounded-lg *:scale-125 *:md:scale-125 *:transition"
     >
       <!-- <a href={contact.x} class="hover:-translate-y-0.5" title="Cuenta de X"><XIcon className="" /></a>
       <a href={contact.facebook} class="hover:-translate-y-0.5" title="Cuenta de facebook"><FacebookIcon className="" /></a>
@@ -48,9 +50,9 @@ export const contact = {
     </div>
   </div>
 
-  <div class="border-t border-slate-200 mt-6 pt-3 text-center text-sm w-full text-slate-500">
+  <div class="border-t border-slate-200 mt-6 pt-3 text-center text-xs w-full text-slate-500">
     <a href="https://www.cdl.net.ar/" target="_blank"
-      >Desarrollado por <span class="font-iceberg text-base">{CDL}</span> <br class="block md:hidden"> <span class="hidden md:inline-block">-</span> Winfarma - Landing page | Ningun derecho reservado</a
+      >Desarrollado por <span class="font-iceberg text-sm">{CDL}</span> <br class="block md:hidden"> <span class="hidden md:inline-block">-</span> Winfarma - Landing page | Ningun derecho reservado</a
     >
   </div>
 </footer>
