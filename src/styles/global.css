@@ -2,12 +2,12 @@
 
 @font-face {
     font-family: "Poppins";
-    src: url('../assets/fonts/Poppins-Regular.ttf');
+    src: url('../assets/fonts/Poppins.ttf');
 }
 
 @font-face {
     font-family: "Onest";
-    src: url('../assets/fonts/Onest-Regular.ttf');
+    src: url('../assets/fonts/Onest.ttf');
 }
 
 .font-poppins {
