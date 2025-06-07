@@ -3,7 +3,8 @@ import "../styles/global.css";
 const { className, title } = Astro.props;
 const description =
   "Winfarma es un sistema de facturación para farmacias que permite a los usuarios facturar a sus clientes de forma sencilla y eficiente. Disponible en toto el pais.";
-const logoB = new URL("../assets/images/imagenB.jpeg", Astro.url);
+
+import logoB from "../assets/images/imagenB.jpeg";
 ---
 
 <!doctype html>
@@ -23,8 +24,8 @@ const logoB = new URL("../assets/images/imagenB.jpeg", Astro.url);
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={logoB} />
-    <meta name="twitter:image" content={logoB} />
+    <meta property="og:image" content={logoB.src} />
+    <meta name="twitter:image" content={logoB.src} />
   </head>
   <body class:list={["bg-slate-50 font-onest", className]}>
     <slot />
