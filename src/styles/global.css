@@ -27,3 +27,10 @@
     font-family: "Onest", sans-serif;
 }
 
+p {
+    text-wrap: pretty;
+}
+
+p a {
+        text-wrap: pretty;
+}

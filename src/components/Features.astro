@@ -1,0 +1,99 @@
+---
+import ReceiptIcon from "./resources/icons/ReceiptIcon.astro";
+import CheckIcon from "./resources/icons/CheckIcon.astro";
+import LockIcon from "./resources/icons/LockIcon.astro";
+import TrickIcon from "./resources/icons/TrickIcons.astro";
+import ConectIcon from "./resources/icons/ConectIcon.astro";
+import StockIcon from "./resources/icons/StockIcons.astro";
+
+
+const features = [
+  {
+    title: "Gestión integral de productos",
+    description:
+      "Buscá productos por nombre, troquel, código de barras, laboratorio, monodroga o acción farmacoterapéutica, y encontrá equivalencias fácilmente para brindar una atención más precisa y eficiente.",
+  },
+  {
+    title: "Validación de obras sociales",
+    description:
+      "Validá facilmente la cobertura de recetas según las normas de cada Obra Social, y generá las liquidaciones necesarias en formatos impresos o digitales, reduciendo tiempos y errores administrativos.",
+  },
+  {
+    title: "Control de stock y cuentas corrientes",
+    description:
+      "Llevá un control detallado del inventario, evitando quiebres de stock o excesos, y administrá con claridad las cuentas corrientes de tus clientes o pacientes para mantener tu negocio siempre ordenado.",
+  },
+  {
+    title: "Flexibilidad con proveedores",
+    description:
+      "Incorporá productos propios y sumá catálogos de perfumería o medicamentos de distintas droguerías y distribuidoras con facilidad, adaptando el sistema a las necesidades reales de tu farmacia.",
+  },
+  {
+    title: "Compatibilidad y conectividad",
+    description:
+      "Utilizá el sistema en varias terminales conectadas en red, imprimí con las principales impresoras fiscales del mercado y validá recetas online con los sistemas más usados, sin complicaciones técnicas.",
+  },
+  {
+    title: "Privacidad y facilidad de uso",
+    description:
+      "Garantizamos la seguridad y confidencialidad de tus datos, sin depender de terceros. Además, el sistema está diseñado para ser intuitivo y fácil de usar, incluso para personal sin experiencia técnica.",
+  },
+];
+
+---
+
+<section class="bg-slate-800 py-8 px-4 scroll-m-18" id="caracteristicas">
+
+    <h2
+      class="font-bold text-center text-2xl md:text-3xl lg:text-4xl border-slate-200 md:px-28 px-8 md:pb-8 font-poppins text-white"
+      transition:animate="initial"
+    >
+      Características principales
+    </h2>
+
+  <div class="container mx-auto xl:max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-white  *:flex *:flex-col *:items-center *:justify-center *:gap-2 *:p-7  *:border-slate-700">
+
+    <article class="border-b border-slate-700">
+      <div class="flex items-end w-full gap-2">
+      <ReceiptIcon className="text-lime-500" />
+      <h2 class="font-bold">{features[0].title}</h2>
+      </div>
+      <p class="text-sm text-slate-300">{features[0].description}</p>
+    </article>
+    <article class="border-b border-slate-700 md:border-l lg:border-r">
+      <div class="flex items-end w-full gap-2">
+      <CheckIcon className="text-lime-500 size-7" />
+      <h2 class="font-bold">{features[1].title}</h2>
+      </div>
+      <p class="text-sm text-slate-300">{features[1].description}</p>
+    </article>
+    <article class="border-b border-slate-700">
+      <div class="flex items-end w-full gap-2">
+      <StockIcon className="text-lime-500" />
+      <h2 class="font-bold">{features[2].title}</h2>
+      </div>
+      <p class="text-sm text-slate-300">{features[2].description}</p>
+    </article>    
+    <article class="border-b lg:border-b-0 md:border-l lg:border-l-0">
+      <div class="flex items-end w-full gap-2">
+      <TrickIcon className="text-lime-500" />
+      <h2 class="font-bold">{features[3].title}</h2>
+    </div>
+      <p class="text-sm text-slate-300">{features[3].description}</p>
+    </article>
+    <article class="border-b md:border-b-0 border-slate-700 lg:border-l lg:border-r">
+      <div class="flex items-end w-full gap-2">
+      <ConectIcon className="text-lime-500" />
+      <h2 class="font-bold">{features[4].title}</h2>
+      </div>
+      <p class="text-sm text-slate-300">{features[4].description}</p>
+    </article>
+    <article class="md:border-l lg:border-l-0">
+      <div class="flex items-end w-full gap-2">
+      <LockIcon className="text-lime-500" />
+      <h2 class="font-bold">{features[5].title}</h2>
+      </div>
+      <p class="text-sm text-slate-300">{features[5].description}</p>
+    </article>
+</div>
+</section>
