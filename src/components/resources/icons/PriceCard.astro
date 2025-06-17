@@ -1,0 +1,10 @@
+---
+ const { title, description, price } = Astro.props;
+---
+
+<article class="flex flex-col gap-2 shadow-md rounded-xl bg-white p-6 w-xs h-fit">
+    <h2 class="underline text-lg text-slate-500">{title}</h2>
+    <p class="flex items-center border-t border-b py-2 border-slate-200 border-dashed"><span class="font-bold text-xl">$</span><span class="font-bold text-3xl">{price}</span><span class="text-slate-500 text-sm">/por mes</span></p>
+    <p class="p-1 text-sm text-slate-600">{description}</p>
+    <a href="https://wa.me/5493874637703?text=Hola%20me%20gustaría%20solicitar%20una%20demo%20del%20sistema%20winfarma." class="rounded-md bg-sky-600 text-center text-white font-bold py-1 px-3">Solicitar</a>
+</article>

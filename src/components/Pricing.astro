@@ -1,0 +1,16 @@
+---
+import PriceCard from "./resources/icons/PriceCard.astro";
+---
+
+<div class="py-6 px-4 scroll-m-18 container mx-auto xl:max-w-6xl" id="precios">
+<h1 class="font-bold text-center text-2xl md:text-3xl lg:text-4xl border-slate-200 px-8 font-poppins text-slate-800 opacity-animation" >Precios</h1>
+
+<p class="text-slate-500 text-pretty py-6 px-4 max-w-5xl text-center mx-auto">
+    La instalación del sistema va completamente bonificada. El precio de la suscripcion incluye soporte técnico, mantenimiento y actualizaciones. Durante el primer mes te visitaremos para enseñarte a usar el sistema y configurar todo lo necesario para adaptarlo a tus necesidades.
+</p>
+<section class="flex flex-wrap gap-4 justify-center" id="precios">
+    <PriceCard title="Demo" description="Puedes probar el sistema sin costo alguno durante el primer mes." price="0" />
+    <PriceCard title="Precio base" description="Por una sola maquina, se te cobrará una suscripcion. Instalación bonificada." price="36.336" />
+    <PriceCard title="Terminal adicional" description="Por cada máquina adicional que requieras se cobra un adicional." price="6.667" />
+</section>
+</div>

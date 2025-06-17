@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout className="px-4" title="Winfarma | Precio de medicamentos">
+<Layout className="" title="Winfarma | Precio de medicamentos">
   <section class="grid place-items-center">
     <span
       class="mt-8 border-t border-slate-200 px-8 py-2 flex items-center gap-1"
@@ -33,9 +33,9 @@ import Layout from "../layouts/Layout.astro";
     </p>
   </section>
 
-  <main class="grid place-items-center py-4">
-    <p class="text-center text-sm font-bold text-slate-500 py-2">
-      Nombre, prescripción, principio activo, troquel o laboratorio:
+  <main class="grid place-items-center p-4">
+    <p class="text-center text-sm font-bold text-slate-500 pt-2 pb-4">
+      Puede buscar productos por: Nombre, prescripción, principio activo, troquel o laboratorio
     </p>
     <form id="search-medicamentos-form" class="flex gap-1 items-center">
       <label class="flex gap-1 items-center">
@@ -48,7 +48,7 @@ import Layout from "../layouts/Layout.astro";
         />
         <button
           id="search-medicamentos-button"
-          class="bg-slate-800 text-white rounded-lg px-3 py-1.5"
+          class="bg-slate-800 text-white rounded-lg px-3 py-1.5 cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -213,7 +213,7 @@ import Layout from "../layouts/Layout.astro";
       completamente orientativa, pretende ser una guía para el profesional que
       la consulta. Si Ud. desea o necesita estar informado al instante de la
       variación o modificación en los precios de medicamentos, <a
-        href="/contacto"
+        href="/#precios"
         class="text-slate-800 text-pretty"
       >
         consulte por nuestro sistema.

@@ -9,9 +9,9 @@ import StockIcon from "./resources/icons/StockIcons.astro";
 
 const features = [
   {
-    title: "Gestión integral de productos",
+    title: "Precios siempre actualizados",
     description:
-      "Buscá productos por nombre, troquel, código de barras, laboratorio, monodroga o acción farmacoterapéutica, y encontrá equivalencias fácilmente para brindar una atención más precisa y eficiente.",
+      "Buscá productos por nombre, troquel, código de barras, laboratorio, monodroga o acción farmacoterapéutica, y encontrá equivalencias fácilmente para brindar una atención más precisa y eficiente. ",
   },
   {
     title: "Validación de obras sociales",
@@ -45,13 +45,13 @@ const features = [
 <section class="bg-slate-800 py-8 px-4 scroll-m-18" id="caracteristicas">
 
     <h2
-      class="font-bold text-center text-2xl md:text-3xl lg:text-4xl border-slate-200 md:px-28 px-8 md:pb-8 font-poppins text-white"
+      class="font-bold text-center text-2xl md:text-3xl lg:text-4xl border-slate-200 md:px-28 px-8 md:pb-8 font-poppins text-white opacity-animation"
       transition:animate="initial"
     >
       Características principales
     </h2>
 
-  <div class="container mx-auto xl:max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-white  *:flex *:flex-col *:items-center *:justify-center *:gap-2 *:p-7  *:border-slate-700">
+  <div class="container mx-auto xl:max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-white  *:flex *:flex-col *:items-center *:justify-center *:gap-2 *:p-7  *:border-slate-700 opacity-animation">
 
     <article class="border-b border-slate-700">
       <div class="flex items-end w-full gap-2">
@@ -97,3 +97,19 @@ const features = [
     </article>
 </div>
 </section>
+
+<style is:global>
+
+    .opacity-animation {
+        animation: opacity-animation 1s ease-in-out forwards;
+    }
+
+    @keyframes opacity-animation {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
