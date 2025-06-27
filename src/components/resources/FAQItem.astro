@@ -1,0 +1,35 @@
+---
+const { question } = Astro.props;
+---
+
+<article class="flex flex-col shadow-md rounded-lg bg-white  w-full max-w-4xl mx-auto h-12 mb-4 transition-all overflow-hidden gap-2">
+    <header class="px-6 py-3 flex items-center justify-between cursor-pointer card-header-faq">
+    <h2 class="text-slate-700 font-bold ">{question}</h2>
+        <div class="size-6 bg-slate-100  rounded-full text-slate-600">
+            <svg class="block p-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: currentColor;transform: ;msFilter:;"><path d="m12 6.879-7.061 7.06 2.122 2.122L12 11.121l4.939 4.94 2.122-2.122z"></path></svg>
+        </div>
+    </header>
+    <p class="card-info-faq text-sm text-slate-600">
+    <slot />
+    </p>
+</article>
+
+<style>
+    article {
+        interpolate-size: allow-keywords;
+    }
+</style>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const cardHeader = document.querySelectorAll(".card-header-faq");
+
+        cardHeader.forEach((element) => {
+            element.addEventListener("click", () => {
+                //@ts-ignore
+                element.parentNode.classList.toggle('h-fit');
+
+            });
+        });
+    });
+</script>
