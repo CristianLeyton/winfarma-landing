@@ -2,14 +2,14 @@
 const { question } = Astro.props;
 ---
 
-<article class="flex flex-col shadow-md rounded-lg bg-white  w-full max-w-4xl mx-auto h-12 mb-4 transition-all overflow-hidden gap-2">
+<article class="flex flex-col shadow-md rounded-lg bg-white  w-full max-w-4xl mx-auto mb-4 transition-all overflow-hidden gap-2">
     <header class="px-6 py-3 flex items-center justify-between cursor-pointer card-header-faq">
-    <h2 class="text-slate-700 font-bold ">{question}</h2>
-        <div class="size-6 bg-slate-100  rounded-full text-slate-600">
-            <svg class="block p-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: currentColor;transform: ;msFilter:;"><path d="m12 6.879-7.061 7.06 2.122 2.122L12 11.121l4.939 4.94 2.122-2.122z"></path></svg>
+    <h2 class="text-slate-700 font-bold text-sm">{question}</h2>
+        <div class="size-6 shrink-0 bg-slate-100  rounded-full text-slate-600">
+            <svg  class="block p-1 arrow-svg transition-transform" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: currentColor;transform: ;msFilter:;"><path d="m12 6.879-7.061 7.06 2.122 2.122L12 11.121l4.939 4.94 2.122-2.122z"></path></svg>
         </div>
     </header>
-    <p class="card-info-faq text-sm text-slate-600">
+    <p class="card-info-faq text-sm text-pretty text-slate-600 p-6 pt-0 hidden open-menu-animation">
     <slot />
     </p>
 </article>
@@ -23,11 +23,15 @@ const { question } = Astro.props;
 <script>
     document.addEventListener("astro:page-load", () => {
         const cardHeader = document.querySelectorAll(".card-header-faq");
+        
 
         cardHeader.forEach((element) => {
             element.addEventListener("click", () => {
+                const arrowSvg = element.querySelector(".arrow-svg");
                 //@ts-ignore
-                element.parentNode.classList.toggle('h-fit');
+                arrowSvg.classList.toggle("rotate-180");
+                //@ts-ignore
+                element.nextElementSibling.classList.toggle("hidden");
 
             });
         });
