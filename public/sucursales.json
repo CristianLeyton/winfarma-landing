@@ -1,0 +1,68 @@
+[
+    {
+      "Nombre": "Todo el pais",
+      "Ubicacion": "https://maps.app.goo.gl/qUXoR7hPk6TNNQ36A",
+      "Direccion": "Av. Libertador 1800",
+      "Localidad": "CABA, Buenos Aires - Argentina",
+      "CP": "4447",
+      "Telefono": "(54) 387 545 9077",
+      "Email": "info@caba.com.ar",
+      "Instagram": "",
+      "Whatsapp": "https://wa.me/5511222227"
+    },
+    {
+      "Nombre": "CABA",
+      "Ubicacion": "https://maps.app.goo.gl/qUXoR7hPk6TNNQ36A",
+      "Direccion": "Av. Libertador 1800",
+      "Localidad": "CABA, Buenos Aires - Argentina",
+      "CP": "4447",
+      "Telefono": "(54) 11 22 22 27",
+      "Email": "info@caba.com.ar",
+      "Instagram": "https://www.instagram.com/caba.com.ar",
+      "Whatsapp": ""
+    },
+  {
+      "Nombre": "La plata",
+      "Ubicacion": "https://maps.app.goo.gl/qUXoR7hPk6TNNQ36A",
+      "Direccion": "Av. Libertador La plata",
+      "Localidad": "La Plata, La Plata - Argentina",
+      "CP": "4446",
+      "Telefono": "(54) 11 22 22 26",
+      "Email": "info@laplata.com.ar",
+      "Instagram": "https://www.instagram.com/laplata.com.ar",
+      "Whatsapp": "https://wa.me/5511222226"
+    },
+  {
+      "Nombre": "Mar del Plata",
+      "Ubicacion": "https://maps.app.goo.gl/qUXoR7hPk6TNNQ36A",
+      "Direccion": "Av. Libertador mar de plata",
+      "Localidad": "Mar del Plata, Mar del Plata - Argentina",
+      "CP": "4445",
+      "Telefono": "(54) 11 22 22 25",
+      "Email": "info@mardelplata.com.ar",
+      "Instagram": "https://www.instagram.com/mardelplata.com.ar",
+      "Whatsapp": "https://wa.me/5511222225"
+    },
+  {
+      "Nombre": "Salta",
+      "Ubicacion": "https://maps.app.goo.gl/qUXoR7hPk6TNNQ36A",
+      "Direccion": "Av. Juan Pablo II",
+      "Localidad": "Salta, Salta - Argentina",
+      "CP": "4400",
+      "Telefono": "(54) 11 22 22 22",
+      "Email": "info@salta.com.ar",
+      "Instagram": "https://www.instagram.com/salta.com.ar",
+      "Whatsapp": "https://wa.me/5511222222"
+    },
+  {
+      "Nombre": "San Juan",
+      "Ubicacion": "https://maps.app.goo.gl/qUXoR7hPk6TNNQ36A",
+      "Direccion": "Av. Libertador",
+      "Localidad": "San Juan, San Juan - Argentina",
+      "CP": "4444",
+      "Telefono": "(54) 11 22 22 24",
+      "Email": "info@sanjuan.com.ar",
+      "Instagram": "https://www.instagram.com/sanjuan.com.ar",
+      "Whatsapp": "https://wa.me/5511222224"
+    }
+]

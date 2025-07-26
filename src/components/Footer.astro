@@ -7,52 +7,208 @@ import PhoneIcon from "./resources/icons/PhoneIcon.astro";
 import EmailIcon from "./resources/icons/EmailIcon.astro";
 import MapPinIcon from "./resources/icons/MapPinIcon.astro";
 const CDL = "{CDL}";
-
-export const contact = {
-  x: "#",
-  facebook: "#",
-  instagram: "https://www.instagram.com/grupoalfabetaoficial/",
-  whatsapp: "https://api.whatsapp.com/send/?phone=5493874637703&text=Hola!%20Me%20gustaria%20solicitar%20una%20muestra%20gratis.&type=phone_number&app_absent=0",
-  phone: "5493874637703",
-  ubicacion: "https://maps.app.goo.gl/qUXoR7hPk6TNNQ36A",
-  email: 'winfarmasalta@gmail.com'
-};
 ---
 
-<footer id="contacto" class="text-slate-800 px-6 py-4 bg-white shadow-md rounded-xl mx-auto xl:max-w-6xl my-4 text-sm"
-  transition:name="footer" id="contacto"
+<footer
+  id="contacto"
+  class="text-slate-800 px-6 py-4 bg-white shadow-md rounded-xl mx-auto xl:max-w-6xl my-4 text-sm"
+  transition:name="footer"
+  id="contacto"
 >
-  <div
-    class="grid md:justify-items-center items-center md:grid-cols-2 gap-7"
-  >
+  <div class="grid md:justify-items-center items-center md:grid-cols-2 gap-7">
     <div class="text-slate-500">
       <h2 class="text-lg lg:text-xl font-bold mb-1">Contactanos</h2>
-      <a href={contact.ubicacion} target="_blank" title="Ver en GoogleMaps" class="flex gap-1 items-center transition hover:text-sky-600 group">Av. del Bicentenario 1026 <MapPinIcon className="text-sky-600 group-hover:-translate-y-0.5 transition"/></a>
-      <p>Salta, Salta - Argentina</p>
-      <p>CP: 4400</p>
-      <a href=`tel:${contact.phone}` target="_blank" title="Llamar" class="transition hover:text-sky-600">Celular: +54 387 463-7703</a> <br>
-      <a href=`mailto:${contact.email}` target="_blank" title="Enviar Correo" class="transition hover:text-sky-600">Correo: {contact.email}</a> 
-      <p class="pt-2 text-pretty font-semibold">
-        ¡Solicita una demo gratuita!
-      </p>
+      <a
+        id="hrefUbicacion"
+        href=""
+        target="_blank"
+        title="Ver en GoogleMaps"
+        class="flex gap-1 items-center transition hover:text-sky-600 group"
+        ><span id="direccionRepresentante"></span><MapPinIcon
+          className="text-sky-600 group-hover:-translate-y-0.5 transition"
+        /></a
+      >
+      <p id="localidadRepresentante"></p>
+      <p>CP: <span id="cpRepresentante"></span></p>
+      <a
+        id="telefonoRepresentante"
+        href=""
+        target="_blank"
+        title="Llamar"
+        class="transition hover:text-sky-600"
+        >Celular: <span id="mostrarTelefonoRepresentante"></span></a
+      >
+      <br />
+      <a
+        id="correoRepresentante"
+        href=""
+        target="_blank"
+        title="Enviar Correo"
+        class="transition hover:text-sky-600"
+        >Correo: <span id="mostrarCorreoRepresentante"></span>
+      </a>
+      <p class="pt-2 text-pretty font-semibold">¡Solicita una demo gratuita!</p>
     </div>
 
     <div
-      class="flex justify-center gap-5 md:gap-4 flex-nowrap *:bg-slate-800 *:text-white  *:inline-block *:p-1 *:rounded-lg *:scale-125 *:md:scale-125 *:transition"
+      class="flex justify-center gap-5 md:gap-4 flex-nowrap *:bg-slate-800 *:text-white *:p-1 *:rounded-lg *:scale-125 *:md:scale-125 *:transition"
     >
       <!-- <a href={contact.x} class="hover:-translate-y-0.5" title="Cuenta de X"><XIcon className="" /></a>
       <a href={contact.facebook} class="hover:-translate-y-0.5" title="Cuenta de facebook"><FacebookIcon className="" /></a>
        -->
-      <a href={contact.instagram} target="_blank" class="hover:-translate-y-0.5" title="Cuenta de Instagram"><InstagramIcon className="" /></a>
-      <a href={contact.whatsapp} target="_blank" class="hover:-translate-y-0.5" title="Enviar WhatsApp"><WhatsAppIcon className="" /></a>
-      <a href=`mailto:${contact.email}` target="_blank" class="hover:-translate-y-0.5" title="Enviar Correo"><EmailIcon className="" /></a>
-      <a href=`tel:${contact.phone}` target="_blank" class="hover:-translate-y-0.5" title="Llamar"><PhoneIcon className="" /></a>
+      <a
+        id="instagramIcon"
+        href=""
+        target="_blank"
+        class="hover:-translate-y-0.5"
+        title="Cuenta de Instagram"><InstagramIcon className="" /></a
+      >
+      <a
+        id="whatsappIcon"
+        href=""
+        target="_blank"
+        class="hover:-translate-y-0.5"
+        title="Enviar WhatsApp"><WhatsAppIcon className="" /></a
+      >
+      <a
+        id="emailIcon"
+        href=""
+        target="_blank"
+        class="hover:-translate-y-0.5"
+        title="Enviar Correo"><EmailIcon className="" /></a
+      >
+      <a
+        id="phoneIcon"
+        href=""
+        target="_blank"
+        class="hover:-translate-y-0.5"
+        title="Llamar"><PhoneIcon className="" /></a
+      >
     </div>
   </div>
 
-  <div class="border-t border-slate-200 mt-6 pt-3 text-center text-xs w-full text-slate-500">
+  <div
+    class="border-t border-slate-200 mt-6 pt-3 text-center text-xs w-full text-slate-500"
+  >
     <a href="https://www.cdl.net.ar/" target="_blank"
-      >Desarrollado por <span class="font-iceberg text-sm">{CDL}</span> <br class="block md:hidden"> <span class="hidden md:inline-block">-</span> Winfarma - Landing page | Ningun derecho reservado</a
+      >Desarrollado por <span class="font-iceberg text-sm">{CDL}</span>
+      <br class="block md:hidden" />
+      <span class="hidden md:inline-block">-</span> Winfarma - Landing page | Ningun
+      derecho reservado</a
     >
   </div>
 </footer>
+
+<script type="module">
+  document.addEventListener("astro:page-load", () => {
+    const direccionRepresentante = document.getElementById(
+      "direccionRepresentante"
+    );
+    const ubicacionRepresentante = document.getElementById("hrefUbicacion");
+    const localidadRepresentante = document.getElementById(
+      "localidadRepresentante"
+    );
+    const cpRepresentante = document.getElementById("cpRepresentante");
+    const telefonoRepresentante = document.getElementById(
+      "telefonoRepresentante"
+    );
+    const mostrarTelefonoRepresentante = document.getElementById(
+      "mostrarTelefonoRepresentante"
+    );
+    const correoRepresentante = document.getElementById("correoRepresentante");
+    const mostrarCorreoRepresentante = document.getElementById(
+      "mostrarCorreoRepresentante"
+    );
+    const instagramRepresentante = document.getElementById("instagramIcon");
+    const whatsappRepresentante = document.getElementById("whatsappIcon");
+    const emailRepresentante = document.getElementById("emailIcon");
+    const phoneRepresentante = document.getElementById("phoneIcon");
+
+    let sucursalesData = null;
+
+    function actualizarDatosSucursal(region) {
+      if (!sucursalesData) {
+        fetch(`/sucursales.json`)
+          .then((res) => res.json())
+          .then((data) => {
+            sucursalesData = data;
+            mostrar(region);
+          });
+      } else {
+        mostrar(region);
+      }
+    }
+
+    function mostrar(region) {
+      const sucursal = sucursalesData.find(
+        (sucursal) => sucursal.Nombre === region
+      );
+      if (sucursal) {
+        direccionRepresentante.textContent = sucursal.Direccion;
+        ubicacionRepresentante.href = sucursal.Ubicacion;
+        localidadRepresentante.textContent = sucursal.Localidad;
+        cpRepresentante.textContent = sucursal.CP;
+        telefonoRepresentante.href = `tel:${sucursal.Telefono}`;
+        mostrarTelefonoRepresentante.textContent = sucursal.Telefono;
+        correoRepresentante.href = `mailto:${sucursal.Email}`;
+        mostrarCorreoRepresentante.textContent = sucursal.Email;
+        
+        //Icono instagram
+        if (sucursal.Instagram && sucursal.Instagram !== "") {
+          instagramRepresentante.href = sucursal.Instagram;
+          instagramRepresentante.classList.remove("hidden");
+        } else {
+          instagramRepresentante.classList.add("hidden");
+          instagramRepresentante.href = "";
+        }
+
+        //Icono whatsapp
+        if (sucursal.Whatsapp && sucursal.Whatsapp !== "") {
+          whatsappRepresentante.href = sucursal.Whatsapp;
+          whatsappRepresentante.classList.remove("hidden");
+        } else {
+          whatsappRepresentante.classList.add("hidden");
+          whatsappRepresentante.href = "";
+        }
+
+        //Icono email
+        if (sucursal.Email && sucursal.Email !== "") {
+          emailRepresentante.href = `mailto:${sucursal.Email}`;
+          emailRepresentante.classList.remove("hidden");
+        } else {
+          emailRepresentante.classList.add("hidden");
+          emailRepresentante.href = "";
+        }
+
+        //Icono phone
+        if (sucursal.Telefono && sucursal.Telefono !== "") {
+          phoneRepresentante.href = `tel:${sucursal.Telefono}`;
+          phoneRepresentante.classList.remove("hidden");
+        } else {
+          phoneRepresentante.classList.add("hidden");
+          phoneRepresentante.href = "";
+        }
+      } else {
+        direccionRepresentante.textContent = "Sucursal no encontrada";
+        ubicacionRepresentante.href = "";
+        localidadRepresentante.textContent = "Sucursal no encontrada";
+        cpRepresentante.textContent = "CP no encontrado";
+        telefonoRepresentante.href = "";
+        mostrarTelefonoRepresentante.textContent = "Sucursal no encontrada";
+      }
+    }
+
+    // Escuchar cambios de región
+    window.addEventListener("region-change", (e) => {
+      const region = e.detail.region;
+      actualizarDatosSucursal(region);
+    });
+
+    // Inicializar con la primera región (si existe el select en el DOM)
+    const regionSelect = document.getElementById("region");
+    if (regionSelect) {
+      const initialRegion = regionSelect.value;
+      actualizarDatosSucursal(initialRegion);
+    }
+  });
+</script>

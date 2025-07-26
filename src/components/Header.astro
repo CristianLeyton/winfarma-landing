@@ -20,20 +20,16 @@ import logo from "../assets/images/logo.png";
     >
       <a href="/#inicio">Inicio</a>
       <a href="/#caracteristicas">Características</a>
-      <a href="/#precios">Precios</a>
+<!--       <a href="/#precios">Precios</a> -->
       <a href="/#sobre-nosotros">Sobre nosotros</a>
       <a href="#contacto">Contacto</a>
     </div>
 
     <div class="flex gap-4">
-      <a
-        class="bg-slate-800 text-white rounded-lg px-3 py-1.5 hover:-translate-y-0.5 transition"
-        href="/precio-de-medicamentos"
-      >
-        Precios de medicamentos
-      </a>
-
-      <button
+      <select name="region" id="region" class="bg-slate-800 text-white px-3 py-1.5 pr-6 rounded-lg border border-slate-700 w-full">
+        <option value="Todo el pais">Todo el pais</option>
+      </select>
+        <button
         id="menu-button"
         class="md:hidden flex items-center gap-2 text-slate-600 hover:text-slate-950 cursor-pointer"
       >
@@ -56,6 +52,17 @@ import logo from "../assets/images/logo.png";
 </header>
 
 <style is:global>
+
+  select#region {
+  appearance: none;           /* Quita el estilo nativo */
+  -webkit-appearance: none;   /* Safari/Chrome */
+  -moz-appearance: none;      /* Firefox */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.30rem center;
+  background-size: 1.5em;
+}
+
   .open-menu-animation {
     animation: open-menu 0.2s ease-in-out forwards;
   }
@@ -74,7 +81,7 @@ import logo from "../assets/images/logo.png";
   .close-menu-animation {
     animation: close-menu 0.2s ease-in-out forwards;
   }
-
+  
   @keyframes close-menu {
     from {
       opacity: 1;
@@ -85,9 +92,9 @@ import logo from "../assets/images/logo.png";
       transform: translateY(-5%);
     }
   }
-</style>
+  </style>
 
-<script>
+<script type="module">
   document.addEventListener("astro:page-load", () => {
     const navBar = document.getElementById("navBar");
     const menuButton = document.getElementById("menu-button");
@@ -149,13 +156,39 @@ import logo from "../assets/images/logo.png";
 
     // Evitar que los clics dentro del menú cierren el menú
     navBar?.addEventListener("click", (event) => {
-      const target = event.target as HTMLElement;
+      const target = event.target;
 
       // Si se hace clic en un enlace <a>, permitir propagación
       if (target.closest("a")) return;
 
       // Si no es un <a>, detener propagación para que no se cierre el menú
       event.stopPropagation();
+    });
+
+    // Region
+    const region = document.getElementById("region");
+    let sucursalesData = null;
+
+    // Cargar sucursales solo una vez
+    fetch("/sucursales.json")
+      .then((res) => res.json())
+      .then((data) => {
+        sucursalesData = data;
+        const options = data.map((sucursal) => {
+          return `<option value="${sucursal.Nombre}">${sucursal.Nombre}</option>`;
+        });
+        region.innerHTML =  options.join("");
+      });
+
+    region.addEventListener("change", (event) => {
+      const selectedRegion = event.target.value;
+      window.dispatchEvent(
+        new CustomEvent("region-change", {
+          detail: { region: selectedRegion },
+          bubbles: true,
+          composed: true,
+        })
+      );
     });
   });
 </script>
