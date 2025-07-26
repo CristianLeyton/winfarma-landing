@@ -3,7 +3,10 @@ import ButtonPrimary from "./resources/ButtonPrimary.astro";
 import ButtonSecondary from "./resources/ButtonSecondary.astro";
 ---
 
-<section class="relative w-full grid place-items-center text-center fade-in-animation pb-8 scroll-m-18 px-4" id="inicio">
+<section
+  class="relative w-full grid place-items-center text-center fade-in-animation pb-8 scroll-m-18 px-4"
+  id="inicio"
+>
   <p
     class="mt-8 font-bold md:text-lg border-t border-slate-200 md:px-28 px-8 py-2 flex items-center gap-1"
   >
@@ -31,7 +34,9 @@ import ButtonSecondary from "./resources/ButtonSecondary.astro";
   </p>
   <p
     class="font-poppins text-3xl md:text-4xl lg:text-5xl md:leading-15 font-black border-t border-b border-slate-200 px-10 py-2"
-  transition:animate="initial" transition:name="title-page">
+    transition:animate="initial"
+    transition:name="title-page"
+  >
     El <span class="text-sky-600">sistema de gestión de farmacias</span>
     <br /> que estas buscando
   </p>
@@ -43,48 +48,67 @@ import ButtonSecondary from "./resources/ButtonSecondary.astro";
   </p>
 
   <div class="flex gap-4 px-8 py-4 justify-center border-b border-slate-200">
-    <ButtonPrimary href="/#precios">Solicitar Demo</ButtonPrimary>
+    <a
+      id="btnSolicitarDemo"
+      href=""
+      target="_blank"
+      class="bg-sky-600 group text-white rounded-md pl-3 pr-1 py-1.5 hover:-translate-y-0.5 hover:saturate-125 transition w-fit cursor-pointer flex items-center gap-0.5 text-sm"
+    >
+      Solicitar Demo<span class="group-hover:translate-x-1 transition block"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <!--Boxicons v3.0 https://boxicons.com | License  https://docs.boxicons.com/free-->
+          <path
+            d="M8 6.65v10.69c0 .64.76.99 1.24.56l6.11-5.35c.34-.3.34-.83 0-1.13L9.24 6.07C8.76 5.65 8 5.99 8 6.63Z"
+          ></path>
+        </svg></span
+      >
+    </a>
     <ButtonSecondary href="/#caracteristicas">Conocer más</ButtonSecondary>
   </div>
-
-
 </section>
 
 <style is:global>
-    .fade-in-animation p, .fade-in-animation div {
-        animation: fade-in 0.4s ease-in-out forwards;
-    }
+  .fade-in-animation p,
+  .fade-in-animation div {
+    animation: fade-in 0.4s ease-in-out forwards;
+  }
 
-    .fade-in-animation p:nth-child(2) {
-        opacity: 0;
-        animation-delay: 0.2s;
-    }
+  .fade-in-animation p:nth-child(2) {
+    opacity: 0;
+    animation-delay: 0.2s;
+  }
 
-    .fade-in-animation p:nth-child(3) {
-        opacity: 0;
-        animation-delay: 0.4s;
-    }
+  .fade-in-animation p:nth-child(3) {
+    opacity: 0;
+    animation-delay: 0.4s;
+  }
 
-    .fade-in-animation p:nth-child(4) {
-        opacity: 0;
-        animation-delay: 0.8s;
-    }
+  .fade-in-animation p:nth-child(4) {
+    opacity: 0;
+    animation-delay: 0.8s;
+  }
 
-    .fade-in-animation div {
-        opacity: 0;
-        animation-delay: 0.7s;
-    }
+  .fade-in-animation div {
+    opacity: 0;
+    animation-delay: 0.7s;
+  }
 
-    @keyframes fade-in {
-        from {
-            transform: translateY(-15px) scale(1.1);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0px) scale(1);
-            opacity: 1;
-        }
+  @keyframes fade-in {
+    from {
+      transform: translateY(-15px) scale(1.1);
+      opacity: 0;
     }
+    to {
+      transform: translateY(0px) scale(1);
+      opacity: 1;
+    }
+  }
 </style>
 
 <script>
@@ -117,3 +141,4 @@ import ButtonSecondary from "./resources/ButtonSecondary.astro";
     }
   });
 </script>
+

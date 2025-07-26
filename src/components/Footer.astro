@@ -124,6 +124,9 @@ const CDL = "{CDL}";
     const emailRepresentante = document.getElementById("emailIcon");
     const phoneRepresentante = document.getElementById("phoneIcon");
 
+    // Pongo el wsp en el boton del hero
+    const btnSolicitarDemo = document.getElementById("btnSolicitarDemo"); //Este boton está en el hero
+
     let sucursalesData = null;
 
     function actualizarDatosSucursal(region) {
@@ -152,7 +155,7 @@ const CDL = "{CDL}";
         mostrarTelefonoRepresentante.textContent = sucursal.Telefono;
         correoRepresentante.href = `mailto:${sucursal.Email}`;
         mostrarCorreoRepresentante.textContent = sucursal.Email;
-        
+
         //Icono instagram
         if (sucursal.Instagram && sucursal.Instagram !== "") {
           instagramRepresentante.href = sucursal.Instagram;
@@ -188,6 +191,10 @@ const CDL = "{CDL}";
           phoneRepresentante.classList.add("hidden");
           phoneRepresentante.href = "";
         }
+
+        if (btnSolicitarDemo) {
+          btnSolicitarDemo.href = sucursal.Whatsapp;
+        }
       } else {
         direccionRepresentante.textContent = "Sucursal no encontrada";
         ubicacionRepresentante.href = "";
@@ -205,9 +212,10 @@ const CDL = "{CDL}";
     });
 
     // Inicializar con la primera región (si existe el select en el DOM)
-    const regionSelect = document.getElementById("region");
+    const regionSelect = document.getElementById("region"); //Este select es el que está en el Header.astro
     if (regionSelect) {
-      const initialRegion = regionSelect.value;
+      const initialRegion =
+        localStorage.getItem("winfarma-region") || regionSelect.value;
       actualizarDatosSucursal(initialRegion);
     }
   });

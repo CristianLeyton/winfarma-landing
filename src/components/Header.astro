@@ -16,20 +16,24 @@ import logo from "../assets/images/logo.png";
 
     <div
       id="navBar"
-      class="hidden md:flex gap-1 md:gap-6 text-slate-600 *:hover:text-slate-950 bg-white w-full md:w-fit shadow-md rounded-xl md:shadow-none p-4 top-16 left-0 text-left *:hover:bg-slate-100 *:p-2 *:rounded *:transition md:*:p-0 md:*:hover:bg-white"
+      class="hidden md:flex translate-x-9 bg-white gap-1 md:gap-6 text-slate-600 *:hover:text-slate-950 w-full md:w-fit shadow-md rounded-xl md:shadow-none p-4 top-16 left-0 text-left *:hover:bg-slate-100 *:p-2 *:rounded *:transition md:*:p-0 md:*:hover:bg-white"
     >
       <a href="/#inicio">Inicio</a>
       <a href="/#caracteristicas">Características</a>
-<!--       <a href="/#precios">Precios</a> -->
+      <!--       <a href="/#precios">Precios</a> -->
       <a href="/#sobre-nosotros">Sobre nosotros</a>
       <a href="#contacto">Contacto</a>
     </div>
 
     <div class="flex gap-4">
-      <select name="region" id="region" class="bg-slate-800 text-white px-3 py-1.5 pr-6 rounded-lg border border-slate-700 w-full">
+      <select
+        name="region"
+        id="region"
+        class="bg-slate-800 w-fit text-white px-3 py-1.5 pr-6 rounded-lg border border-slate-800"
+      >
         <option value="Todo el pais">Todo el pais</option>
       </select>
-        <button
+      <button
         id="menu-button"
         class="md:hidden flex items-center gap-2 text-slate-600 hover:text-slate-950 cursor-pointer"
       >
@@ -52,16 +56,15 @@ import logo from "../assets/images/logo.png";
 </header>
 
 <style is:global>
-
   select#region {
-  appearance: none;           /* Quita el estilo nativo */
-  -webkit-appearance: none;   /* Safari/Chrome */
-  -moz-appearance: none;      /* Firefox */
-  background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 0.30rem center;
-  background-size: 1.5em;
-}
+    appearance: none; /* Quita el estilo nativo */
+    -webkit-appearance: none; /* Safari/Chrome */
+    -moz-appearance: none; /* Firefox */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.3rem center;
+    background-size: 1.5em;
+  }
 
   .open-menu-animation {
     animation: open-menu 0.2s ease-in-out forwards;
@@ -81,7 +84,7 @@ import logo from "../assets/images/logo.png";
   .close-menu-animation {
     animation: close-menu 0.2s ease-in-out forwards;
   }
-  
+
   @keyframes close-menu {
     from {
       opacity: 1;
@@ -92,7 +95,7 @@ import logo from "../assets/images/logo.png";
       transform: translateY(-5%);
     }
   }
-  </style>
+</style>
 
 <script type="module">
   document.addEventListener("astro:page-load", () => {
@@ -177,7 +180,15 @@ import logo from "../assets/images/logo.png";
         const options = data.map((sucursal) => {
           return `<option value="${sucursal.Nombre}">${sucursal.Nombre}</option>`;
         });
-        region.innerHTML =  options.join("");
+        region.innerHTML = options.join("");
+
+        const selectedRegion = localStorage.getItem("winfarma-region") || null;
+        if (selectedRegion) {
+          region.value = selectedRegion;
+          console.log(region.value);
+        } else {
+          localStorage.setItem("winfarma-region", "");
+        }
       });
 
     region.addEventListener("change", (event) => {
@@ -189,6 +200,7 @@ import logo from "../assets/images/logo.png";
           composed: true,
         })
       );
+      localStorage.setItem("winfarma-region", selectedRegion);
     });
   });
 </script>
