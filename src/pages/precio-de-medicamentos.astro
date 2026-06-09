@@ -251,7 +251,7 @@ import Layout from "../layouts/Layout.astro";
       resultsElement.textContent = "Buscando medicamentos...";
 
       try {
-        const response = await fetch("https://api-cdl.com/medicamentos.php", {
+        const response = await fetch("https://api-precios.cdl.net.ar/medicamentos.php", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
